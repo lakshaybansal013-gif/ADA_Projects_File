@@ -52,7 +52,7 @@ int main()
 
     if (n < 10)
     {
-        printf("Please enter a number greater than 5000.\n");
+        printf("Please enter a number greater than or equal to 10.\n");
         return 0;
     }
 
