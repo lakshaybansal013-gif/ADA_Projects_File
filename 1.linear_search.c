@@ -31,7 +31,7 @@ int main()
     printf("Enter the size of the array: ");
     scanf("%d", &n);
 
-    if (n < 10)
+    if (n <= 5000)
     {
         printf("Please enter a number greater than 5000.\n");
         return 0;
@@ -49,8 +49,8 @@ int main()
 
     generateRandomNumber(arr, n);
 
-    // Select the last element as the key
-    int randomIndex = (rand() % n); 
+    // Select a random key from the array
+    int randomIndex = rand() % n;
     int key = arr[randomIndex];
 
     // Display the key and its original index
