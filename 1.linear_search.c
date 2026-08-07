@@ -31,7 +31,7 @@ int main()
     printf("Enter the size of the array: ");
     scanf("%d", &n);
 
-    if (n <= 10)
+    if (n < 10)
     {
         printf("Please enter a number greater than 5000.\n");
         return 0;
