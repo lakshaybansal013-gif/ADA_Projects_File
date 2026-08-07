@@ -69,8 +69,8 @@ int main()
     generateRandomNumber(arr, n);
     qsort(arr, n, sizeof(int), compare);
 
-    // Select a random key from the array
-    int randomIndex = rand() % n;
+    // Select the last element as the key
+    int randomIndex = n - 1;
     int key = arr[randomIndex];
 
     // Display the key and its original index
