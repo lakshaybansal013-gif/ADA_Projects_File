@@ -49,8 +49,8 @@ int main()
 
     generateRandomNumber(arr, n);
 
-    // Select a random key from the array
-    int randomIndex = n-1; // Select the last element as the key
+    // Select the last element as the key
+    int randomIndex = n-1; 
     int key = arr[randomIndex];
 
     // Display the key and its original index
