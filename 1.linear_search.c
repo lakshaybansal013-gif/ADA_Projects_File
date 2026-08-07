@@ -50,7 +50,7 @@ int main()
     generateRandomNumber(arr, n);
 
     // Select the last element as the key
-    int randomIndex = n-1; 
+    int randomIndex = (rand() % n); 
     int key = arr[randomIndex];
 
     // Display the key and its original index
