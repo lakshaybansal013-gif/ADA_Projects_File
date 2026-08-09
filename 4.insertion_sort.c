@@ -12,6 +12,20 @@ void generateRandomNumber(int arr[], int n)
     }
 }
 
+void printArray(int arr[], int n)
+{
+    printf("[");
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d", arr[i]);
+        if (i < n - 1)
+        {
+            printf(", ");
+        }
+    }
+    printf("]\n");
+}
+
 void insertionSort(int arr[], int n)
 {
     for (int i = 1; i < n; i++)
@@ -53,6 +67,9 @@ int main()
     srand(time(NULL));
     generateRandomNumber(arr, n);
 
+    printf("\nOriginal array:\n");
+    printArray(arr, n);
+
     clock_t start = clock();
 
     for (int i = 0; i < 1000; i++)
@@ -63,6 +80,9 @@ int main()
         }
         insertionSort(temp, n);
     }
+
+    printf("\nSorted array:\n");
+    printArray(temp, n);
 
     clock_t end = clock();
 

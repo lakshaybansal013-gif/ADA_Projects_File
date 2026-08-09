@@ -12,6 +12,20 @@ void generateRandomNumber(int arr[], int n)
     }
 }
 
+void printArray(int arr[], int n)
+{
+    printf("[");
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d", arr[i]);
+        if (i < n - 1)
+        {
+            printf(", ");
+        }
+    }
+    printf("]\n");
+}
+
 void merge(int arr[], int left, int mid, int right)
 {
     int n1 = mid - left + 1;
@@ -93,6 +107,9 @@ int main()
     srand(time(NULL));
     generateRandomNumber(arr, n);
 
+    printf("\nOriginal array:\n");
+    printArray(arr, n);
+
     clock_t start = clock();
 
     for (int i = 0; i < 1000; i++)
@@ -103,6 +120,9 @@ int main()
         }
         mergeSort(temp, 0, n - 1);
     }
+
+    printf("\nSorted array:\n");
+    printArray(temp, n);
 
     clock_t end = clock();
 
