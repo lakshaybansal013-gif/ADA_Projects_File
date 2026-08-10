@@ -71,19 +71,16 @@ int main()
     printArray(arr, n);
 
     clock_t start = clock();
-
-    for (int i = 0; i < 1000; i++)
-    {
-        
+ 
         insertionSort(arr, n);
-    }
+    
 
     printf("\nSorted array:\n");
     printArray(arr, n);
 
     clock_t end = clock();
 
-    double time_taken = ((double)(end - start)) / CLOCKS_PER_SEC / 1000.0;
+    double time_taken = ((double)(end - start)) / CLOCKS_PER_SEC ;
 
     printf("Insertion sort completed for %d elements.\n", n);
     printf("Average time taken for insertion sort: %lf seconds\n", time_taken);
