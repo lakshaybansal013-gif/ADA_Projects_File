@@ -90,18 +90,27 @@ int main()
     }
 
     srand(time(NULL));
+    
+clock_t total_time = 0;
+
+for (int i = 0; i < 1000; i++)
+{
     generateRandomNumber(arr, n);
 
     clock_t start = clock();
-    
-        mergeSort(arr, 0, n - 1);
-    
+
+    mergeSort(arr, 0, n - 1);
+
     clock_t end = clock();
 
-    double time_taken = ((double)(end - start))/CLOCKS_PER_SEC  ;
+    total_time += end - start;
+}
+
+double average_time =
+    ((double)total_time / CLOCKS_PER_SEC) / 1000.0;
 
     printf("Merge sort completed for %d elements.\n", n);
-    printf("Average time taken for merge sort: %lf seconds\n", time_taken);
+    printf("Average time taken for merge sort: %lf seconds\n", average_time);
 
     free(arr);
 
