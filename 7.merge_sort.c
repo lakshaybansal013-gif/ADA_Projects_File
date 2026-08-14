@@ -82,9 +82,8 @@ int main()
     }
 
     int *arr = (int *)malloc(n * sizeof(int));
-    int *temp = (int *)malloc(n * sizeof(int));
 
-    if (arr == NULL || temp == NULL)
+    if (arr == NULL )
     {
         printf("Memory not allocated.\n");
         return -1;
@@ -95,14 +94,7 @@ int main()
 
     clock_t start = clock();
 
-    for (int i = 0; i < 1000; i++)
-    {
-        for (int j = 0; j < n; j++)
-        {
-            temp[j] = arr[j];
-        }
-        mergeSort(temp, 0, n - 1);
-    }
+        mergeSort(arr, 0, n - 1);
 
     clock_t end = clock();
 
@@ -112,7 +104,6 @@ int main()
     printf("Average time taken for merge sort: %lf seconds\n", time_taken);
 
     free(arr);
-    free(temp);
 
     return 0;
 }
