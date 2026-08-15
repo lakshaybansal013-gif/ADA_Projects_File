@@ -70,7 +70,7 @@ int main()
     qsort(arr, n, sizeof(int), compare);
 
     // Select a random key from the array
-    int randomIndex = rand() % n;
+    int randomIndex = rand()% n;
     int key = arr[randomIndex];
 
     // Display the key and its original index
