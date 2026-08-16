@@ -12,20 +12,6 @@ void generateRandomNumber(int arr[], int n)
     }
 }
 
-void printArray(int arr[], int n)
-{
-    printf("[");
-    for (int i = 0; i < n; i++)
-    {
-        printf("%d", arr[i]);
-        if (i < n - 1)
-        {
-            printf(", ");
-        }
-    }
-    printf("]\n");
-}
-
 void swap(int *a, int *b)
 {
     int temp = *a;
@@ -74,9 +60,9 @@ int main()
     }
 
     int *arr = (int *)malloc(n * sizeof(int));
-    int *temp = (int *)malloc(n * sizeof(int));
+    
 
-    if (arr == NULL || temp == NULL)
+    if (arr == NULL )
     {
         printf("Memory not allocated.\n");
         return -1;
@@ -85,32 +71,20 @@ int main()
     srand(time(NULL));
     generateRandomNumber(arr, n);
 
-    printf("\nOriginal array:\n");
-    printArray(arr, n);
-
+    
     clock_t start = clock();
-
-    for (int i = 0; i < 1000; i++)
-    {
-        for (int j = 0; j < n; j++)
-        {
-            temp[j] = arr[j];
-        }
-        quickSort(temp, 0, n - 1);
-    }
-
-    printf("\nSorted array:\n");
-    printArray(temp, n);
-
+  
+        quickSort(arr, 0, n - 1);
+    
     clock_t end = clock();
 
-    double time_taken = ((double)(end - start)) / CLOCKS_PER_SEC / 1000.0;
+    double time_taken = ((double)(end - start)) / CLOCKS_PER_SEC ;
 
     printf("Quick sort completed for %d elements.\n", n);
     printf("Average time taken for quick sort: %lf seconds\n", time_taken);
 
     free(arr);
-    free(temp);
+   
 
     return 0;
 }
