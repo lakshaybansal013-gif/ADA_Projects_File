@@ -70,7 +70,7 @@ int main()
     double time_taken = ((double)(end - start)) / CLOCKS_PER_SEC ;
 
     printf("Selection sort completed for %d elements.\n", n);
-    printf("Average time taken for selection sort: %lf seconds\n", time_taken);
+    printf(" Time taken for selection sort: %lf seconds\n", time_taken);
 
     free(arr);
 
