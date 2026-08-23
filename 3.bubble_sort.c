@@ -12,20 +12,6 @@ void generateRandomNumber(int arr[], int n)
     }
 }
 
-void printArray(int arr[], int n)
-{
-    printf("[");
-    for (int i = 0; i < n; i++)
-    {
-        printf("%d", arr[i]);
-        if (i < n - 1)
-        {
-            printf(", ");
-        }
-    }
-    printf("]\n");
-}
-
 void swap(int *a, int *b)
 {
     int temp = *a;
@@ -36,13 +22,18 @@ void swap(int *a, int *b)
 void bubbleSort(int arr[], int n)
 {
     for (int i = 0; i < n - 1; i++)
-    {
+    {   int swapped=0;
         for (int j = 0; j < n - i - 1; j++)
         {
             if (arr[j] > arr[j + 1])
             {
                 swap(&arr[j], &arr[j + 1]);
+                swapped=1;
             }
+        }
+        if (swapped==0)
+        {
+            break;
         }
     }
 }
@@ -61,9 +52,8 @@ int main()
     }
 
     int *arr = (int *)malloc(n * sizeof(int));
-    int *temp = (int *)malloc(n * sizeof(int));
 
-    if (arr == NULL || temp == NULL)
+    if (arr == NULL)
     {
         printf("Memory not allocated.\n");
         return -1;
@@ -72,32 +62,22 @@ int main()
     srand(time(NULL));
     generateRandomNumber(arr, n);
 
-    printf("\nOriginal array:\n");
-    printArray(arr, n);
+    
 
     clock_t start = clock();
 
-    for (int i = 0; i < 1000; i++)
-    {
-        for (int j = 0; j < n; j++)
-        {
-            temp[j] = arr[j];
-        }
-        bubbleSort(temp, n);
-    }
-
-    printf("\nSorted array:\n");
-    printArray(temp, n);
-
+    
+        bubbleSort(arr, n);
+    
     clock_t end = clock();
 
-    double time_taken = ((double)(end - start)) / CLOCKS_PER_SEC / 1000.0;
+    double time_taken = ((double)(end - start)) / CLOCKS_PER_SEC ;
 
     printf("Bubble sort completed for %d elements.\n", n);
-    printf("Average time taken for bubble sort: %lf seconds\n", time_taken);
+    printf("Time taken for bubble sort: %lf seconds\n", time_taken);
 
     free(arr);
-    free(temp);
+    
 
     return 0;
 }
