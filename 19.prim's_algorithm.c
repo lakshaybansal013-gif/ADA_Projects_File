@@ -1,106 +1,66 @@
 
 #include <stdio.h>
 
-#define MAX 100
-#define INF 1000000000
-
-void prim(int graph[MAX][MAX], int V)
-{
-    int key[MAX], parent[MAX], visited[MAX];
-    int totalCost = 0;
-
-    for (int i = 0; i < V; i++) {
-        key[i] = INF;
-        parent[i] = -1;
-        visited[i] = 0;
-    }
-
-    key[0] = 0;
-
-    for (int count = 0; count < V; count++) {
-        int min = INF;
-        int u = -1;
-
-        // Find unvisited vertex with minimum key
-        for (int v = 0; v < V; v++) {
-            if (!visited[v] && key[v] < min) {
-                min = key[v];
-                u = v;
-            }
-        }
-
-        // Check if graph is disconnected
-        if (u == -1) {
-            printf("Graph is disconnected. MST does not exist.\n");
-            return;
-        }
-
-        visited[u] = 1;
-
-        // Update adjacent vertices
-        for (int v = 0; v < V; v++) {
-            if (graph[u][v] != INF &&
-                !visited[v] &&
-                graph[u][v] < key[v]) {
-
-                key[v] = graph[u][v];
-                parent[v] = u;
-            }
-        }
-    }
-
-    printf("\nEdges in Minimum Spanning Tree:\n");
-
-    for (int i = 1; i < V; i++) {
-        printf("%d - %d : %d\n",
-               parent[i], i, key[i]);
-
-        totalCost += key[i];
-    }
-
-    printf("Minimum Cost = %d\n", totalCost);
-}
+#define INF 9999
 
 int main()
 {
-    int V, E;
-    int graph[MAX][MAX];
+    int n, graph[10][10];
+    int visited[10] = {0};
+    int edges = 0, cost = 0;
 
-    printf("Enter number of vertices and edges: ");
-    scanf("%d %d", &V, &E);
+    printf("Enter number of vertices: ");
+    scanf("%d", &n);
 
-    if (V <= 0 || V > MAX || E < 0) {
-        printf("Invalid graph size.\n");
-        return 1;
-    }
+    printf("Enter adjacency matrix:\n");
 
-    // Initialize adjacency matrix
-    for (int i = 0; i < V; i++) {
-        for (int j = 0; j < V; j++) {
-            graph[i][j] = (i == j) ? 0 : INF;
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            scanf("%d", &graph[i][j]);
         }
     }
 
-    printf("Enter source, destination and weight:\n");
+    visited[0] = 1;
 
-    for (int i = 0; i < E; i++) {
-        int u, v, w;
-        scanf("%d %d %d", &u, &v, &w);
+    printf("\nEdges in MST:\n");
 
-        if (u < 0 || u >= V || v < 0 || v >= V) {
-            printf("Invalid vertex.\n");
-            return 1;
-        }
+    while (edges < n - 1)
+    {
+        int min = INF;
+        int u = -1, v = -1;
 
-        if (u != v) {
-            if (w < graph[u][v]) {
-                graph[u][v] = w;
-                graph[v][u] = w;
+        for (int i = 0; i < n; i++)
+        {
+            if (visited[i])
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    if (!visited[j] && graph[i][j] < min)
+                    {
+                        min = graph[i][j];
+                        u = i;
+                        v = j;
+                    }
+                }
             }
         }
+
+        if (u == -1)
+        {
+            printf("MST does not exist.\n");
+            return 0;
+        }
+
+        printf("%d - %d : %d\n", u, v, min);
+
+        cost += min;
+        visited[v] = 1;
+        edges++;
     }
 
-    prim(graph, V);
+    printf("Minimum Cost = %d\n", cost);
 
     return 0;
 }
